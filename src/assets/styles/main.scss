@@ -1,0 +1,29 @@
+:root {
+    --clr-white: #E1E1E1;
+    --clr-black: #1D1D1D;
+    --clr-main-red: #ED0000;
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    
+}
+
+body {
+    margin: 0;
+    background-color: var(--clr-black);
+}
+
+.svg {
+    fill: var(--clr-white);
+}
+
+.main-layout {
+    max-width: 1465px;
+    padding: 25px;
+    margin-inline: auto;
+}
