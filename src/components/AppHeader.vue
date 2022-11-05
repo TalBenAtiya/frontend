@@ -32,13 +32,16 @@ export default {
 <style lang="scss">
 @keyframes breathing {
     0% {
-        box-shadow: 0px -4px 30px -5px #ed000022;
+        box-shadow: 0px -4px 30px -5px #ed00003a;
     }
 
-    100% {
+    50% {
         box-shadow: 0px 0px 30px -5px #ed0000da;
     }
 
+    100% {
+        box-shadow: 0px -4px 30px -5px #ed00003a;
+    }
 }
 
 .header-container {

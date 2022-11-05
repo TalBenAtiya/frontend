@@ -1,19 +1,20 @@
-  <script>
+<script>
 import AppHeader from '@/components/AppHeader.vue';
-  export default {
-    components: { AppHeader,}
+import { gameService } from './services/game.service.js';
+
+export default {
+  data() {
+  },
+  components: { AppHeader, }
 }
-  </script>
+
+</script>
     AppHeader
 
 
 <template>
-  <section>
     <AppHeader />
-    <main>
-      <h1>WELCOME</h1>
-    </main>
-  </section>
+    <RouterView />
 </template>
 
 
