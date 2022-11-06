@@ -10,6 +10,9 @@
 }
 
 html {
+    font-family: monts-light;
+    font-size: 16px;
+    color: var(--clr-white);
     
 }
 
@@ -26,4 +29,38 @@ body {
     max-width: 1465px;
     padding: 25px;
     margin-inline: auto;
+}
+
+h1,h2,h3,h4,h5,h6,p {
+    margin: 0;
+}
+
+@font-face {
+    font-family: monts-thin;
+    src: url(../fonts/Montserrat/Montserrat-Thin.ttf);
+}
+
+@font-face {
+    font-family: monts-light;
+    src: url(../fonts/Montserrat/Montserrat-Light.ttf);
+}
+
+@font-face {
+    font-family: monts;
+    src: url(../fonts/Montserrat/Montserrat-Regular.ttf);
+}
+
+@font-face {
+    font-family: monts-medium;
+    src: url(../fonts/Montserrat/Montserrat-Medium.ttf);
+}
+
+@font-face {
+    font-family: monts-semibold;
+    src: url(../fonts/Montserrat/Montserrat-SemiBold.ttf);
+}
+
+@font-face {
+    font-family: monts-bold;
+    src: url(../fonts/Montserrat/Montserrat-Bold.ttf);
 }

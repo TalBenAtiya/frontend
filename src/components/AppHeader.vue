@@ -47,6 +47,7 @@ export default {
 .header-container {
     background: var(--clr-black);
     animation: breathing 4s linear infinite;
+    margin-bottom: 35px;
 
     .main-header {
         display: flex;
@@ -62,7 +63,7 @@ export default {
             a.router-link-active {
                 svg {
                     fill: var(--clr-main-red);
-                    scale: 1.2;
+                    scale: 1.3;
                 }
             }
         }
@@ -76,12 +77,12 @@ export default {
     .rubik-svg,
     .home-svg,
     .about-svg {
-        width: 30px;
-        height: 30px;
+        width: 25px;
+        height: 25px;
         transition: 0.2s ease-in-out;
 
         &:hover {
-            scale: 1.2;
+            scale: 1.3;
 
             path {
                 transition: 0.5s;
