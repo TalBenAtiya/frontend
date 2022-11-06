@@ -1,6 +1,7 @@
 :root {
     --clr-white: #E1E1E1;
     --clr-black: #1D1D1D;
+    --clr-gray: #353535;
     --clr-main-red: #ED0000;
 }
 
@@ -20,6 +21,16 @@ body {
     margin: 0;
     background-color: var(--clr-black);
 }
+
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 0.4em;
+    cursor: pointer;
+    width: fit-content;
+  }
 
 .svg {
     fill: var(--clr-white);

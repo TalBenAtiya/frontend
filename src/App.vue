@@ -4,6 +4,7 @@ import { gameService } from './services/game.service.js';
 
 export default {
   data() {
+    return
   },
   components: { AppHeader, }
 }

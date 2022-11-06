@@ -5,16 +5,6 @@ export const gameService = {
     getGames,
 }
 
-const options = {
-    method: 'GET',
-    url: 'https://free-to-play-games-database.p.rapidapi.com/api/filter',
-    params: { tag: '3d.mmorpg.fantasy.pvp', platform: 'pc' },
-    headers: {
-        'X-RapidAPI-Key': 'SIGN-UP-FOR-KEY',
-        'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com'
-    }
-};
-
 const STORAGE_KEY = 'gamesDB'
 
 async function getGames(pageNumber = 1) {
@@ -23,7 +13,6 @@ async function getGames(pageNumber = 1) {
         return games
     } else {
         const gamesData = await axios.get(`https://api.rawg.io/api/games?key=2f92ea3ac3a7410d8ab2914254d3d4cf&page=${pageNumber}`)
-        console.log(gamesData);
         games = gamesData.data.results
         games = games.map(game => {
             return {
@@ -32,7 +21,8 @@ async function getGames(pageNumber = 1) {
                 genres: game.genres,
                 imgUrl: game.background_image,
                 screenshots: game.short_screenshots,
-                released: game.released
+                released: game.released,
+                price: getRandomIntInclusive(25, 150)
             }
         })
         storageService.postMany(STORAGE_KEY+pageNumber, games)
@@ -41,5 +31,9 @@ async function getGames(pageNumber = 1) {
 }
 
 
-
+function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min)
+  }
 
