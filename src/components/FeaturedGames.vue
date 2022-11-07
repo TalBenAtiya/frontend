@@ -102,7 +102,7 @@ export default {
     padding: 15px;
     display: flex;
     flex-direction: column;
-    color: rgb(255, 255, 255);
+    color: var(--clr-white);
     gap: 20px;
 
     h1 {
@@ -134,7 +134,7 @@ export default {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.339);
+    background-color: rgba(0, 0, 0, 0.186);
     z-index: -1;
   }
 }

@@ -7,19 +7,19 @@ const storeOptions = {
     state() {
         return {
             games: [],
-            // contact: null,
+            game: null,
         }
     },
     mutations: {
         setGames(state, { games }) {
             state.games = games
         },
+        setGame(state, { game }) {
+            state.game = game
+        },
         // remove(state, { contactId }) {
         //     const idx = state.contacts.findIndex(contact => contactId === contact._id)
         //     state.contacts.splice(idx, 1)
-        // },
-        // setContact(state, { contact }) {
-        //     state.contact = contact
         // },
         // saveContact(state, { contact }) {
         //     const idx = state.contacts.findIndex(currContact => currContact._id === contact._id)
@@ -31,10 +31,10 @@ const storeOptions = {
             const games = await gameService.getGames()
             commit({ type: 'setGames', games })
         },
-        // async loadContact({ commit }, { id }) {
-        //     const contact = await contactService.getContactById(id)
-        //     commit({ type: 'setContact', contact })
-        // },
+        async loadGame({ commit }, { id }) {
+            const game = await gameService.getGameById(id)
+            commit({ type: 'setGame', game })
+        },
         // async removeContact({ commit }, { contactId }) {
         //     await contactService.deleteContact(contactId)
         //     commit({ type: 'remove', contactId })
@@ -48,9 +48,9 @@ const storeOptions = {
         games(state) {
             return state.games
         },
-        // contact(state) {
-        //     return state.contact
-        // }
+        game(state) {
+            return state.game
+        }
     },
     // modules: {
     //     user,

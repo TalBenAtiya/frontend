@@ -3,6 +3,7 @@
     --clr-black: #1D1D1D;
     --clr-gray: #353535;
     --clr-main-red: #ED0000;
+    --clr-highlight: #2071da;
 }
 
 
@@ -30,6 +31,13 @@ button {
     border-radius: 0.4em;
     cursor: pointer;
     width: fit-content;
+    padding: 5px;
+    font-family: monts-light;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--clr-white);
   }
 
 .svg {

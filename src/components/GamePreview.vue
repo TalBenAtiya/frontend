@@ -1,32 +1,33 @@
 <script>
+import PlusSvg from "./svgs/PlusSvg.vue";
 export default {
-    props: {
-        game: {
-            type: Object,
-            required: true,
-        }
-    }
-}
+  components: { PlusSvg },
+  props: {
+    game: {
+      type: Object,
+      required: true,
+    },
+  },
+};
 </script>
 
 <template>
-  <section class="game-preview">
-        <div class="dark-hover"></div>
-        <img :src="`${game.imgUrl}`" />
-        <div class="info">
-          <h4>{{ game.title }}</h4>
-          <span>${{ game.price }}</span>
-        </div>
-        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-        <div class="btns">
-          <button>+</button>
-          <button>{{ game.genres[0].name }}</button>
-        </div>
-      </section>
+  <RouterLink :to="`/games/${game._id}`" class="game-preview">
+    <div class="dark-hover"></div>
+    <img :src="`${game.imgUrl}`" />
+    <div class="info">
+      <h4>{{ game.title }}</h4>
+      <span>${{ game.price }}</span>
+    </div>
+    <p class="description">{{ game.description }}</p>
+    <div class="btns">
+      <button><plus-svg class="svg svg-plus" /></button>
+      <button>{{ game.genres[0].name }}</button>
+    </div>
+  </RouterLink>
 </template>
 
 <style lang="scss">
-
 .game-preview {
   display: flex;
   flex-direction: column;
@@ -38,6 +39,16 @@ export default {
   cursor: pointer;
   z-index: 0;
   padding-bottom: 5px;
+
+  .description {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+    max-height: 3em;
+  }
 
   .dark-hover {
     position: absolute;
@@ -65,6 +76,30 @@ export default {
     display: flex;
     justify-content: space-between;
     padding: 5px;
+
+    button:first-child {
+      background-color: var(--clr-white);
+      color: var(--clr-black);
+      transition: 0.3s;
+      border-radius: 50%;
+
+      &:hover {
+        background-color: var(--clr-highlight);
+        color: var(--clr-white);
+      }
+    }
+
+    button:last-child {
+      background-color: var(--clr-black);
+      color: var(--clr-white);
+      font-size: 11px;
+      padding: 5px;
+    }
+
+    .svg-plus {
+      width: 13px;
+      height: 13px;
+    }
   }
 
   img {
