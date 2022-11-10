@@ -1,7 +1,7 @@
 <script>
 import FeaturedGames from "../components/FeaturedGames.vue";
 export default {
-  components: { FeaturedGames },
+  components: { FeaturedGames},
   data() {
     return {
       idx: 0,
@@ -10,7 +10,7 @@ export default {
   },
   created() {
     this.$store.dispatch({ type: "loadGames" });
-    this.startInterval()
+    this.startInterval();
   },
   unmounted() {
     clearInterval(this.gamesInterval);
@@ -27,7 +27,7 @@ export default {
     setIdx(idx) {
       clearInterval(this.gamesInterval);
       this.idx = idx;
-      this.startInterval()
+      this.startInterval();
     },
     startInterval() {
       this.gamesInterval = setInterval(() => {
@@ -41,11 +41,18 @@ export default {
 
 <template>
   <section v-if="currGame" class="home main-layout">
+    <h2>Featured Games</h2>
     <featured-games :games="games" :currGame="currGame" @set-idx="setIdx" />
   </section>
 </template>
 
 <style lang="scss">
 .home {
+
+  h2 {
+    font-family: monts-thin;
+    margin-bottom: 20px;
+    font-size: 35px;
+  }
 }
 </style>

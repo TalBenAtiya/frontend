@@ -1,10 +1,11 @@
 <script>
+import CartBtn from "./CartBtn.vue";
 import AboutSvg from "./svgs/AboutSvg.vue";
 import HomeSvg from "./svgs/HomeSvg.vue";
 import LogoSvg from "./svgs/LogoSvg.vue";
 import RubikWhiteSvg from "./svgs/RubikWhiteSvg.vue";
 export default {
-  components: { LogoSvg, RubikWhiteSvg, HomeSvg, AboutSvg },
+  components: { LogoSvg, RubikWhiteSvg, HomeSvg, AboutSvg, CartBtn },
 };
 </script>
 
@@ -24,6 +25,7 @@ export default {
         </RouterLink>
       </nav>
     </div>
+    <cart-btn class="my-cart" />
   </header>
 </template>
 
@@ -47,6 +49,7 @@ export default {
   background: var(--clr-black);
   animation: breathing 4s linear infinite;
   margin-bottom: 35px;
+  padding-block: 7px;
 
   .main-header {
     display: flex;
@@ -59,6 +62,7 @@ export default {
     nav {
       display: flex;
       gap: 15px;
+      align-items: center;
 
       a.router-link-active {
         svg {
@@ -91,6 +95,10 @@ export default {
         fill: var(--clr-main-red);
       }
     }
+  }
+  
+  .my-cart {
+    z-index: 1;
   }
 }
 </style>

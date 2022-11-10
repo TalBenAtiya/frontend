@@ -1,9 +1,10 @@
 <script>
 import ArrowSvg from "../components/svgs/ArrowSvg.vue";
+import BackArrowSvg from "../components/svgs/BackArrowSvg.vue";
 import CartSvg from "../components/svgs/CartSvg.vue";
 
 export default {
-  components: { ArrowSvg, CartSvg },
+  components: { ArrowSvg, CartSvg, BackArrowSvg },
   data() {
     return {
       imgUrl: null,
@@ -53,12 +54,18 @@ export default {
         this.setImg(idx);
       }
     },
+    goBack() {
+      this.$router.push('/games')
+    }
   },
 };
 </script>
 
 <template>
   <section v-if="game" class="game-details main-layout">
+    <button @click="goBack()" class="btn back">
+      <BackArrowSvg />
+    </button>
     <article class="game-container">
       <h2>{{ game.title }}</h2>
       <div class="img-container">
@@ -72,20 +79,24 @@ export default {
         </button>
       </div>
       <div class="screenshots-container">
-        <div
-          v-for="(img, idx) in game.screenshots"
-          :key="img._id"
-          class="card"
-          @click="setImg(idx)"
-        >
+        <div v-for="(img, idx) in game.screenshots" :key="img._id" class="card" @click="setImg(idx)">
           <img :src="`${img.image}`" />
         </div>
       </div>
       <div class="info"></div>
     </article>
     <div class="side-container">
+      <h3>Game Info :</h3>
       <p>{{ game.description }}</p>
-      <button class="add-to-cart"><cart-svg /> <span>Add To Cart</span></button>
+      <button class="add-to-cart">
+        <cart-svg /> <span>Add To Cart</span>
+      </button>
+      <span class="date">Release Date: <span>{{ game.released }}</span></span>
+      <div class="genres">
+        <span v-for="genre in game.genres" :key="genre" class="label">
+          {{ genre.name }}
+        </span>
+      </div>
     </div>
   </section>
 </template>
@@ -95,6 +106,45 @@ export default {
   display: flex;
   gap: 30px;
   justify-content: space-between;
+
+  .back {
+    @keyframes arrow-translate {
+      0% {
+        padding-right: 0px;
+        translate: 0 0;
+      }
+      
+      50% {
+        padding-right: 15px;
+        translate: -15px 0;
+      }
+
+      100% {
+        padding-right: 0px;
+        translate: 0px 0;
+      }
+    }
+
+    position: absolute;
+    top: 130px;
+    left: 60px;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: 0.4s;
+
+    &:hover {
+      animation: arrow-translate 0.8s linear infinite;
+      svg {
+        fill: var(--clr-main-red);
+      }
+    }
+
+    svg {
+      width: 30px;
+      height: 30px;
+      fill: white;
+    }
+  }
 
   h2 {
     margin-bottom: 20px;
@@ -147,6 +197,7 @@ export default {
           height: 35px;
           opacity: 0;
           transition: 0.3s;
+
           path {
             fill: var(--clr-white);
           }
@@ -203,9 +254,39 @@ export default {
     gap: 20px;
     height: 600px;
     margin-top: 65px;
+    color: var(--clr-lightgray);
+    background-color: #3535352e;
+    padding: 15px;
+    border-radius: 0.4em;
+
+    h3 {
+      color: var(--clr-white);
+      border-bottom: 1px solid var(--clr-gray);
+      padding-bottom: 10px;
+    }
+
+    .date {
+      font-family: monts-medium;
+      color: var(--clr-white);
+
+      span {
+        font-family: monts-light;
+        color: var(--clr-lightgray);
+      }
+    }
 
     p {
-      font-family: monts-medium;
+      font-family: monts;
+      flex: 1;
+    }
+
+    .label {
+      background-color: var(--clr-gray);
+      padding: 4px;
+      padding-inline: 7px;
+      border-radius: 2em;
+      margin-inline-end: 5px;
+      font-size: 14px;
     }
 
     .add-to-cart {

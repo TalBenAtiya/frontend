@@ -1,7 +1,8 @@
 <script>
+import CartSvg from './svgs/CartSvg.vue';
 import PlusSvg from "./svgs/PlusSvg.vue";
 export default {
-  components: { PlusSvg },
+  components: { PlusSvg, CartSvg },
   props: {
     game: {
       type: Object,
@@ -21,7 +22,7 @@ export default {
     </div>
     <p class="description">{{ game.description }}</p>
     <div class="btns">
-      <button><plus-svg class="svg svg-plus" /></button>
+      <button><cart-svg class="svg svg-cart" /></button>
       <button>{{ game.genres[0].name }}</button>
     </div>
   </RouterLink>
@@ -70,6 +71,14 @@ export default {
     display: flex;
     justify-content: space-between;
     padding: 5px;
+
+    span {
+      font-size: 13px;
+      padding: 4px;
+      border-radius: 0.3em;
+      background-color: var(--clr-highlight);
+      height: fit-content;
+    }
   }
 
   .btns {
@@ -86,6 +95,10 @@ export default {
       &:hover {
         background-color: var(--clr-highlight);
         color: var(--clr-white);
+
+        svg {
+          fill: var(--clr-white);
+        }
       }
     }
 
@@ -96,9 +109,11 @@ export default {
       padding: 5px;
     }
 
-    .svg-plus {
+    .svg-cart {
       width: 13px;
       height: 13px;
+      fill: var(--clr-black);
+      transition: 0.3s;
     }
   }
 

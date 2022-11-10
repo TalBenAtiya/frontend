@@ -17,6 +17,9 @@ export default {
     setIdx(idx) {
       this.$emit("set-idx", idx)
     },
+    goToDetails(id) {
+      this.$router.push(`/games/${id}`)
+    }
   },
 };
 </script>
@@ -30,22 +33,14 @@ export default {
       <div class="game-info">
         <h1>{{ currGame.title }}</h1>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
-          odit illum, amet maiores esse nostrum enim praesentium provident
-          laboriosam nobis! Minus dignissimos amet quam excepturi laboriosam
-          quibusdam, doloremque ex beatae?
+          {{ currGame.description }}
         </p>
         <h4>Get for ${{ currGame.price }}</h4>
-        <button>Buy Now</button>
+        <button @click="goToDetails(currGame._id)">Buy Now</button>
       </div>
     </div>
     <div class="featured-list">
-      <div
-        v-for="(game, idx) in games.slice(0, 5)"
-        :key="idx"
-        class="card"
-        @click="setIdx(idx)"
-      >
+      <div v-for="(game, idx) in games.slice(0, 5)" :key="idx" class="card" @click="setIdx(idx)">
         <img :src="`${game.imgUrl}`" />
         <h4>{{ game.title }}</h4>
       </div>
@@ -102,8 +97,9 @@ export default {
     padding: 15px;
     display: flex;
     flex-direction: column;
-    color: var(--clr-white);
+    color: white;
     gap: 20px;
+
 
     h1 {
       font-size: 38px;
@@ -112,11 +108,17 @@ export default {
     }
 
     p {
-      max-width: 350px;
+      max-width: 450px;
     }
 
     button {
       padding: 15px;
+      transition: 0.3s;
+
+      &:hover {
+        color: var(--clr-white);
+        background-color: var(--clr-highlight);
+      }
     }
   }
 
@@ -128,13 +130,13 @@ export default {
     z-index: -2;
     object-fit: cover;
     object-position: 100% 0;
+    filter: brightness(80%);
   }
 
   .darker-img {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.186);
     z-index: -1;
   }
 }
