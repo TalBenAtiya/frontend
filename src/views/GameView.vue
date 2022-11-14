@@ -1,5 +1,5 @@
 <script>
-import GamePreview from '../components/GamePreview.vue';
+import GamePreview from "../components/GamePreview.vue";
 export default {
   components: { GamePreview },
   data() {
@@ -11,6 +11,11 @@ export default {
   computed: {
     games() {
       return this.$store.getters.games;
+    },
+  },
+  methods: {
+    addToCart(game) {
+      this.$store.dispatch({type:'addToCart' , game})
     },
   },
 };
@@ -34,7 +39,12 @@ export default {
       <span>Shooter</span>
     </div>
     <div class="game-list">
-      <game-preview v-for="game in games" :key="game._id" :game="game"/>
+      <game-preview
+        @add-to-cart="addToCart"
+        v-for="game in games"
+        :key="game._id"
+        :game="game"
+      />
     </div>
   </section>
 </template>

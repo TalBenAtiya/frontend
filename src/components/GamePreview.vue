@@ -9,6 +9,11 @@ export default {
       required: true,
     },
   },
+  methods: {
+    addToCart() {
+      this.$emit('add-to-cart', this.game)
+    }
+  }
 };
 </script>
 
@@ -22,7 +27,7 @@ export default {
     </div>
     <p class="description">{{ game.description }}</p>
     <div class="btns">
-      <button><cart-svg class="svg svg-cart" /></button>
+      <button title="Add To Cart" @click.prevent="addToCart"><cart-svg class="svg svg-cart" /></button>
       <button>{{ game.genres[0].name }}</button>
     </div>
   </RouterLink>

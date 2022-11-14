@@ -6,6 +6,13 @@ import LogoSvg from "./svgs/LogoSvg.vue";
 import RubikWhiteSvg from "./svgs/RubikWhiteSvg.vue";
 export default {
   components: { LogoSvg, RubikWhiteSvg, HomeSvg, AboutSvg, CartBtn },
+  computed: {
+    isCartPage() {
+      const url = this.$route.path
+      if (url === '/cart') return true
+      else return false
+    }
+  }
 };
 </script>
 
@@ -25,7 +32,7 @@ export default {
         </RouterLink>
       </nav>
     </div>
-    <cart-btn class="my-cart" />
+    <cart-btn v-if="!isCartPage" class="my-cart" />
   </header>
 </template>
 
@@ -76,8 +83,8 @@ export default {
   }
 
   .logo-svg {
-    width: 200px;
-    height: 65px;
+    height: 80px;
+    width: 250px;
   }
 
   .rubik-svg,

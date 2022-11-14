@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 import { gameService } from '../services/game.service'
-// import user from './modules/user'
+import cart from './modules/cart'
 
 const storeOptions = {
     strict: true,
@@ -52,9 +52,9 @@ const storeOptions = {
             return state.game
         }
     },
-    // modules: {
-    //     user,
-    // }
+    modules: {
+        cart
+    }
 }
 
 const store = createStore(storeOptions)
