@@ -1,12 +1,14 @@
 <script>
-import AppHeader from "@/components/AppHeader.vue";
-import { gameService } from "./services/game.service.js";
+import AppHeader from "./components/AppHeader.vue";
+import Footer from './components/Footer.vue';
 
 export default {
   data() {
-    return;
+    return {
+      
+    }
   },
-  components: { AppHeader },
+  components: { AppHeader, Footer },
 };
 </script>
     AppHeader
@@ -15,6 +17,7 @@ export default {
 <template>
   <AppHeader />
   <RouterView />
+  <Footer />
 </template>
 
 

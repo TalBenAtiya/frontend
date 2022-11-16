@@ -7,7 +7,7 @@ export default {
       critirea: {
         name: "",
         price: "",
-        genres: [],
+        genres: this.$route.query.genres ? this.$route.query.genres.split(" ") : []
       },
     };
   },
@@ -31,10 +31,11 @@ export default {
       this.$emit("filter-games", this.critirea);
     },
     getPriceClass(str) {
-      if (this.critirea.price === str) return "active";
+      if (this.$route.query.price === str) return "active";
     },
     getGenreClass(str) {
-      if (this.critirea.genres.includes(str)) return "active";
+      if (this.$route.query.genres && this.$route.query.genres[0])
+      if (this.$route.query.genres.includes(str)) return "active";
     },
   },
   computed: {},

@@ -78,7 +78,7 @@ export default {
   z-index: 10;
 
   &.scrolled {
-    background: var(--clr-black);
+    background: var(--clr-header);
     animation: breathing 3s linear infinite;
 
     .main-header {

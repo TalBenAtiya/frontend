@@ -60,6 +60,7 @@ export default {
 .featured-list {
   display: flex;
   flex-direction: column;
+  gap: 5px;
   grid-row: 1/-1;
 
   .card {
@@ -70,13 +71,14 @@ export default {
     cursor: pointer;
     border-radius: 0.4em;
     transition: 0.3s;
+    
 
     &:hover {
       background-color: rgb(54, 54, 54);
     }
 
     img {
-      height: 100px;
+      height: 94px;
       width: 80px;
       object-fit: cover;
       border-radius: 0.3em;

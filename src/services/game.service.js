@@ -24,7 +24,7 @@ async function getGames(critirea = false) {
                 imgUrl: game.background_image,
                 screenshots: game.short_screenshots,
                 released: game.released,
-                price: getRandomIntInclusive(25, 150)
+                price: getRandomIntInclusive(10, 150)
             }
         })
         storageService.postMany(STORAGE_KEY, games)
