@@ -6,34 +6,36 @@ export default {
 
 <template>
 <RouterLink to="/cart" class="cart-btn">
-    <div class="container"><cart-svg /> My-Cart</div>
+    <div class="container"><cart-svg /></div>
 </RouterLink>
 </template>
 
 <style lang="scss">
 .cart-btn {
     position: fixed;
-    top: 135px;
-    right: 25px;
+    bottom: 80px;
+    right: 30px;
     background-color: var(--clr-main-red);
-    padding: 15px;
-    border-radius: 0.5em;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
     transition: 0.3s;
 
     &:hover {
         background: var(--clr-highlight);
     }
     .container {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 5px;
-        font-size: 16px;
+        position: relative;
         transition: 0.2s;
+        display: flex;
 
         svg {
-            width: 20px;
-            height: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            translate: -55% 40%;
+            width: 27px;
+            height: 27px;
             fill: var(--clr-white);
         }
     }

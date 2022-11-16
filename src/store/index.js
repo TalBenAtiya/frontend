@@ -27,8 +27,13 @@ const storeOptions = {
         // }
     },
     actions: {
-        async loadGames({ commit }) {
-            const games = await gameService.getGames()
+        async loadGames({ commit }, { critirea = false }) {
+            let games
+            if (critirea) {
+                games = await gameService.getGames(critirea)
+            } else {
+                games = await gameService.getGames()
+            }
             commit({ type: 'setGames', games })
         },
         async loadGame({ commit }, { id }) {

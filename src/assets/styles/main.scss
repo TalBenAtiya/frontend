@@ -47,12 +47,18 @@ button {
 
 .main-layout {
     max-width: 1465px;
-    padding: 25px;
+    padding: 50px;
     margin-inline: auto;
 }
 
 h1,h2,h3,h4,h5,h6,p {
     margin: 0;
+}
+
+input {
+    border: none;
+    outline: none;
+    color: var(--clr-white);
 }
 
 @font-face {

@@ -42,7 +42,7 @@ export default {
 <template>
   <section v-if="currGame" class="home main-layout">
     <h2>Featured Games</h2>
-    <featured-games :games="games" :currGame="currGame" @set-idx="setIdx" />
+    <FeaturedGames :games="games" :currGame="currGame" @set-idx="setIdx" />
   </section>
 </template>
 

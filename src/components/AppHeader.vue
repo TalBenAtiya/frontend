@@ -6,18 +6,35 @@ import LogoSvg from "./svgs/LogoSvg.vue";
 import RubikWhiteSvg from "./svgs/RubikWhiteSvg.vue";
 export default {
   components: { LogoSvg, RubikWhiteSvg, HomeSvg, AboutSvg, CartBtn },
+  data() {
+    return {
+      isScrolled: false
+    }
+  },
   computed: {
     isCartPage() {
       const url = this.$route.path
       if (url === '/cart') return true
       else return false
     }
-  }
+  },
+  methods: {
+    setIsScrolled() {
+      if (window.scrollY > 30 && !this.isScrolled) this.isScrolled = true
+      if (window.scrollY < 30 && this.isScrolled) this.isScrolled = false
+    }
+  },
+  mounted() {
+        window.addEventListener('scroll', this.setIsScrolled)
+  },
+  unmounted() {
+            window.removeEventListener('scroll', this.setIsScrolled)
+  },
 };
 </script>
 
 <template>
-  <header class="header-container">
+  <header :class="`header-container ${isScrolled ? 'scrolled' : ''}`">
     <div class="main-header">
       <logo-svg class="svg logo-svg" />
       <nav>
@@ -44,7 +61,7 @@ export default {
   }
 
   50% {
-    box-shadow: 0px 0px 30px -5px #ed0000da;
+    box-shadow: 0px 0px 30px -5px #ed0000a7;
   }
 
   100% {
@@ -53,10 +70,22 @@ export default {
 }
 
 .header-container {
-  background: var(--clr-black);
-  animation: breathing 4s linear infinite;
   margin-bottom: 35px;
   padding-block: 7px;
+  position: sticky;
+  top: 0px;
+  transition: 0.5s;
+  z-index: 10;
+
+  &.scrolled {
+    background: var(--clr-black);
+    animation: breathing 3s linear infinite;
+
+    .main-header {
+      padding-inline-end: 45px;
+      padding-inline-start: 20px;
+    }
+  }
 
   .main-header {
     display: flex;
@@ -65,6 +94,7 @@ export default {
     justify-content: space-between;
     padding-inline-end: 30px;
     padding-inline-start: 6px;
+    transition: 0.5s;
 
     nav {
       display: flex;
@@ -84,7 +114,7 @@ export default {
 
   .logo-svg {
     height: 80px;
-    width: 250px;
+    width: 225px;
   }
 
   .rubik-svg,
@@ -103,7 +133,7 @@ export default {
       }
     }
   }
-  
+
   .my-cart {
     z-index: 1;
   }

@@ -1,7 +1,8 @@
 <script>
+import Filter from "../components/Filter.vue";
 import GamePreview from "../components/GamePreview.vue";
 export default {
-  components: { GamePreview },
+  components: { GamePreview, Filter },
   data() {
     return {};
   },
@@ -15,7 +16,10 @@ export default {
   },
   methods: {
     addToCart(game) {
-      this.$store.dispatch({type:'addToCart' , game})
+      this.$store.dispatch({ type: "addToCart", game });
+    },
+    filterGames(critirea) {
+      this.$store.dispatch({ type: "loadGames", critirea});
     },
   },
 };
@@ -24,22 +28,10 @@ export default {
 <template>
   <section v-if="games" class="game-view main-layout">
     <div class="filter">
-      <h4>Filters</h4>
-      <input type="text" placeholder="Search by name" />
-      <label for="max-price">Max Price</label>
-      <input type="range" id="max-price" />
-      <label for="min-price">Min Price</label>
-      <input type="range" id="min-price" />
-      <h4>Genres</h4>
-      <span>Action</span>
-      <span>Adventure</span>
-      <span>Indie</span>
-      <span>Puzzle</span>
-      <span>RPG</span>
-      <span>Shooter</span>
+      <Filter @filter-games="filterGames" />
     </div>
     <div class="game-list">
-      <game-preview
+      <GamePreview
         @add-to-cart="addToCart"
         v-for="game in games"
         :key="game._id"
@@ -56,46 +48,9 @@ export default {
 }
 
 .filter {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid var(--clr-gray);
   flex: 1;
-  border-radius: 0.4em;
-  padding-block: 10px;
   height: fit-content;
   font-size: 14px;
-
-  label {
-    display: flex;
-    padding-inline: 6px;
-    padding-block: 10px;
-  }
-
-  input {
-    padding: 5px;
-    border: none;
-    background-color: var(--clr-gray);
-  }
-
-  h4 {
-    font-family: monts-medium;
-    border-block-end: 3px solid var(--clr-gray);
-    text-align: center;
-    padding-block-end: 5px;
-  }
-
-  span {
-    display: flex;
-    padding-block: 10px;
-    border-block-end: 1px solid var(--clr-gray);
-    padding-inline: 6px;
-    transition: 0.3s;
-    cursor: pointer;
-
-    &:hover {
-      background-color: var(--clr-gray);
-    }
-  }
 }
 
 .game-list {
