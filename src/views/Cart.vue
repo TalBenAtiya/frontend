@@ -159,7 +159,7 @@ export default {
     padding-inline: 10px;
     flex: 1;
     position: sticky;
-    top: 30px;
+    top: 80px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

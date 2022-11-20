@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
 import { gameService } from '../services/game.service'
 import cart from './modules/cart'
+import user from './modules/user'
 
 const storeOptions = {
     strict: true,
@@ -17,14 +18,6 @@ const storeOptions = {
         setGame(state, { game }) {
             state.game = game
         },
-        // remove(state, { contactId }) {
-        //     const idx = state.contacts.findIndex(contact => contactId === contact._id)
-        //     state.contacts.splice(idx, 1)
-        // },
-        // saveContact(state, { contact }) {
-        //     const idx = state.contacts.findIndex(currContact => currContact._id === contact._id)
-        //     state.contacts.splice(idx, 1, contact)
-        // }
     },
     actions: {
         async loadGames({ commit }, { critirea = false }) {
@@ -40,14 +33,6 @@ const storeOptions = {
             const game = await gameService.getGameById(id)
             commit({ type: 'setGame', game })
         },
-        // async removeContact({ commit }, { contactId }) {
-        //     await contactService.deleteContact(contactId)
-        //     commit({ type: 'remove', contactId })
-        // },
-        // async saveContact({ commit }, { contact }) {
-        //     await contactService.saveContact(contact)
-        //     commit({ type: 'saveContact', contact })
-        // }
     },
     getters: {
         games(state) {
@@ -58,7 +43,8 @@ const storeOptions = {
         }
     },
     modules: {
-        cart
+        cart,
+        user
     }
 }
 

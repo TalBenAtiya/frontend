@@ -16,7 +16,7 @@ export default {
       this.$emit("filter-games", this.critirea);
     },
     setCritireaPrice(str) {
-      if (this.critirea.price === str) this.critirea.price = "";
+      if (this.critirea.price === str || this.$route.query.price === str) this.critirea.price = "";
       else this.critirea.price = str;
       this.$emit("filter-games", this.critirea);
     },

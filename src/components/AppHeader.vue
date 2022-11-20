@@ -8,27 +8,37 @@ export default {
   components: { LogoSvg, RubikWhiteSvg, HomeSvg, AboutSvg, CartBtn },
   data() {
     return {
-      isScrolled: false
-    }
+      isScrolled: false,
+      isUserModalOpen: false,
+    };
   },
   computed: {
     isCartPage() {
-      const url = this.$route.path
-      if (url === '/cart') return true
-      else return false
-    }
+      const url = this.$route.path;
+      if (url === "/cart") return true;
+      else return false;
+    },
+    loggedInUser() {
+      return this.$store.getters.user;
+    },
   },
   methods: {
     setIsScrolled() {
-      if (window.scrollY > 30 && !this.isScrolled) this.isScrolled = true
-      if (window.scrollY < 30 && this.isScrolled) this.isScrolled = false
-    }
+      if (window.scrollY > 30 && !this.isScrolled) this.isScrolled = true;
+      if (window.scrollY < 30 && this.isScrolled) this.isScrolled = false;
+    },
+    toggleUserModal() {
+      this.isUserModalOpen = !this.isUserModalOpen;
+    },
+    onLogout() {
+      this.$store.dispatch({ type: "logout" });
+    },
   },
   mounted() {
-        window.addEventListener('scroll', this.setIsScrolled)
+    window.addEventListener("scroll", this.setIsScrolled);
   },
   unmounted() {
-            window.removeEventListener('scroll', this.setIsScrolled)
+    window.removeEventListener("scroll", this.setIsScrolled);
   },
 };
 </script>
@@ -47,6 +57,19 @@ export default {
         <RouterLink to="/about">
           <about-svg class="svg about-svg" />
         </RouterLink>
+        <router-link v-if="!loggedInUser" to="/singup" class="user">
+          <span>LOGIN</span>
+        </router-link>
+        <div v-if="loggedInUser" @click="toggleUserModal()" class="user logged">
+          <div class="logged-in">
+            <span class="user-box">{{
+              loggedInUser.username.slice(0, 2).toUpperCase()
+            }}</span>
+            <div @click="onLogout" class="user-modal" v-if="isUserModalOpen">
+              <span>Logout</span>
+            </div>
+          </div>
+        </div>
       </nav>
     </div>
     <cart-btn v-if="!isCartPage" class="my-cart" />
@@ -71,7 +94,6 @@ export default {
 
 .header-container {
   margin-bottom: 35px;
-  padding-block: 7px;
   position: sticky;
   top: 0px;
   transition: 0.5s;
@@ -82,19 +104,20 @@ export default {
     animation: breathing 3s linear infinite;
 
     .main-header {
-      padding-inline-end: 45px;
+      padding-inline-end: 95px;
       padding-inline-start: 20px;
     }
   }
 
   .main-header {
     display: flex;
-    padding-block: 10px;
+    padding-block: 5px;
     align-items: center;
     justify-content: space-between;
-    padding-inline-end: 30px;
+    padding-inline-end: 80px;
     padding-inline-start: 6px;
     transition: 0.5s;
+    position: relative;
 
     nav {
       display: flex;
@@ -112,8 +135,72 @@ export default {
     }
   }
 
+  .user {
+    position: absolute;
+    top: 0;
+    background-color: var(--clr-main-red);
+    right: 0;
+    border-radius: 0;
+    height: 70px;
+    aspect-ratio: 1/1;
+    color: var(--clr-white);
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    padding-inline: 3px;
+
+    &.logged {
+      background-color: transparent;
+      &:hover {
+        background-color: transparent;
+      }
+    }
+
+    .logged-in {
+      position: relative;
+    }
+
+    .user-modal {
+      position: absolute;
+      bottom: 0;
+      background-color: var(--clr-white);
+      color: var(--clr-black);
+      padding-inline: 15px;
+      padding-block: 5px;
+      border-radius: 0.5em;
+      translate: -50% 100%;
+
+      &:hover {
+        background-color: var(--clr-highlight);
+      }
+    }
+
+    .user-box {
+      background-color: var(--clr-gray);
+      padding: 10px;
+      border-radius: 50%;
+      border: 3px solid var(--clr-black);
+      font-size: 18px;
+
+      &:hover {
+        background-color: var(--clr-highlight);
+      }
+    }
+
+    &.router-link-active {
+      background-color: var(--clr-highlight);
+    }
+
+    &:hover {
+      background-color: var(--clr-highlight);
+    }
+  }
+
   .logo-svg {
-    height: 80px;
+    height: 60px;
     width: 225px;
   }
 

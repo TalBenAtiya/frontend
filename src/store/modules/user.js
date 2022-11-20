@@ -1,25 +1,34 @@
-// import { userService } from "../../services/user.service"
+import { userService } from "../../services/user.service"
 
-// export default {
-//     state: {
-//         user: userService.getUser()
-//     },
-//     mutations: {
-//         setUser(state, { user }) {
-//             state.user = user
-//         },
-//     },
-//     actions: {
-//         loadUser({ commit }, { username }) {
-//             const user = userService.login(username)
-//             commit({ type: 'setUser', user })
-//         },
-//         setTransaction({ commit }, { transaction }) {
-//             const user = userService.handleTransaction(transaction)
-//             commit({ type: 'setUser', user })
-//         },
-//     },
-//     getters: {
-//         user(state) { return state.user }
-//     }
-// }
+export default {
+    state: {
+        user: userService.getLoggedinUser()
+    },
+    mutations: {
+        setUser(state, { user }) {
+            state.user = user
+        },
+    },
+    actions: {
+        async loadUser({ commit }, { username }) {
+            const user = await userService.login(username)
+            commit({ type: 'setUser', user })
+        },
+        async signup({commit}, {creds}) {
+            const user = await userService.signup(creds)
+            commit({type: 'setUser', user})
+        },
+        async logout({commit}) {
+            const user = await userService.logout()
+            commit({type: 'setUser', user})
+        },
+        async login({commit}, {creds}) {
+            const user = await userService.login(creds)
+            commit({type: 'setUser', user})
+        }
+
+    },
+    getters: {
+        user(state) { return state.user }
+    }
+}

@@ -16,24 +16,25 @@ export default {
     bottom: 80px;
     right: 30px;
     background-color: var(--clr-main-red);
-    width: 45px;
-    height: 45px;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
     transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:hover {
         background: var(--clr-highlight);
     }
     .container {
-        position: relative;
         transition: 0.2s;
         display: flex;
+        align-items: center;
+        justify-content: center;
 
         svg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            translate: -55% 40%;
+            padding-right: 3px;
             width: 27px;
             height: 27px;
             fill: var(--clr-white);

@@ -51,10 +51,8 @@ export default {
 
 <style lang="scss">
 .featured-games {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(150px, 350px));
-  grid-template-rows: repeat(5, 120px);
-  column-gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .featured-list {
@@ -67,7 +65,7 @@ export default {
     display: flex;
     padding: 10px;
     align-items: center;
-    gap: 10px;
+    max-width: 300px;
     cursor: pointer;
     border-radius: 0.4em;
     transition: 0.3s;
@@ -88,12 +86,12 @@ export default {
 
 .game-display {
   display: flex;
-  grid-column: 1/5;
-  grid-row: 1/-1;
+  flex: 2;
   position: relative;
   overflow: hidden;
   align-items: flex-end;
   border-radius: 0.5em;
+  min-width: 350px;
 
   .game-info {
     padding: 15px;
@@ -133,6 +131,10 @@ export default {
     object-fit: cover;
     object-position: 100% 0;
     filter: brightness(80%);
+
+    @media (max-width: 1200px) {
+      object-position: center;
+    }
   }
 
   .darker-img {

@@ -1,5 +1,6 @@
 import axios from "axios"
 import { storageService } from "./async-storage.service";
+import { httpService } from './http.service.js'
 import { getRandomIntInclusive, makeLorem } from "./util.service";
 
 export const gameService = {
@@ -8,28 +9,11 @@ export const gameService = {
 }
 
 const STORAGE_KEY = 'gamesDB'
+const BASE_URL = 'game/'
 
 async function getGames(critirea = false) {
-
-    let games = await storageService.query(STORAGE_KEY)
-    if (!games || games.length <= 0) {
-        const gamesData = await axios.get(`https://api.rawg.io/api/games?key=2f92ea3ac3a7410d8ab2914254d3d4cf&page=1`)
-        games = gamesData.data.results
-        games = games.map(game => {
-            return {
-                _id: game.id.toString(),
-                title: game.name,
-                genres: game.genres,
-                description: makeLorem(50),
-                imgUrl: game.background_image,
-                screenshots: game.short_screenshots,
-                released: game.released,
-                price: getRandomIntInclusive(10, 150)
-            }
-        })
-        storageService.postMany(STORAGE_KEY, games)
-    }
-
+    let games = await httpService.get(BASE_URL)
+   
     if (critirea && critirea.name) {
         games = games.filter(game =>  {
            return game.title.toLowerCase().includes(critirea.name.toLowerCase())})
@@ -66,8 +50,7 @@ async function getGames(critirea = false) {
 }
 
 async function getGameById(id) {
-    const game = await storageService.get(STORAGE_KEY, id)
-    return game
+    return httpService.get(BASE_URL + id)
 }
 
 

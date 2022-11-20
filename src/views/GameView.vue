@@ -4,8 +4,7 @@ import GamePreview from "../components/GamePreview.vue";
 export default {
   components: { GamePreview, Filter },
   data() {
-    return {
-    };
+    return {};
   },
   created() {
     this.$store.dispatch({ type: "loadGames" });
@@ -22,7 +21,11 @@ export default {
     filterGames(critirea) {
       this.$router.push({
         path: "/games",
-        query: { price: critirea.price, genres: critirea.genres.length ? critirea.genres.join(" ") : null },
+        query: {
+          price: critirea.price,
+          genres: critirea.genres.length ? critirea.genres.join(" ") : null,
+          name: critirea.name,
+        },
       });
     },
   },
@@ -31,12 +34,15 @@ export default {
   },
   updated() {
     if (this.$route.query !== this.query) {
-      this.query = this.$route.query
+      this.query = this.$route.query;
       const critirea = {
         price: this.$route.query.price,
-        genres: this.$route.query.genres ?  this.$route.query.genres.split(" ") : []
+        genres: this.$route.query.genres
+          ? this.$route.query.genres.split(" ")
+          : [],
+        name: this.$route.query.name,
       };
-       this.$store.dispatch({ type: "loadGames" ,critirea });
+      this.$store.dispatch({ type: "loadGames", critirea });
     }
   },
 };
@@ -69,7 +75,7 @@ export default {
   height: fit-content;
   font-size: 14px;
   position: sticky;
-  top: 150px;
+  top: 110px;
 }
 
 .game-list {

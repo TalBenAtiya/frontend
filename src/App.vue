@@ -1,12 +1,10 @@
 <script>
 import AppHeader from "./components/AppHeader.vue";
-import Footer from './components/Footer.vue';
+import Footer from "./components/Footer.vue";
 
 export default {
   data() {
-    return {
-      
-    }
+    return {};
   },
   components: { AppHeader, Footer },
 };
@@ -21,5 +19,11 @@ export default {
 </template>
 
 
-<style>
+<style lang="scss">
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 </style>
