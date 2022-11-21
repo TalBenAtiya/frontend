@@ -1,8 +1,9 @@
 <script>
 import DynamicCmp from "../components/DynamicCmp.vue";
 import FeaturedGames from "../components/FeaturedGames.vue";
+import Loader from '../components/Loader.vue';
 export default {
-  components: { FeaturedGames, DynamicCmp },
+  components: { FeaturedGames, DynamicCmp, Loader },
   data() {
     return {
       idx: 0,
@@ -96,6 +97,9 @@ export default {
       </div>
       <button @click="goToRoute" class="btn show-all">Show All</button>
     </div>
+  </section>
+  <section v-else>
+    <loader />
   </section>
 </template>
 

@@ -57,7 +57,7 @@ export default {
         <RouterLink to="/about">
           <about-svg class="svg about-svg" />
         </RouterLink>
-        <router-link v-if="!loggedInUser" to="/singup" class="user">
+        <router-link v-if="!loggedInUser" to="/signup" class="user">
           <span>LOGIN</span>
         </router-link>
         <div v-if="loggedInUser" @click="toggleUserModal()" class="user logged">
@@ -180,7 +180,11 @@ export default {
 
     .user-box {
       background-color: var(--clr-gray);
-      padding: 10px;
+      display: flex;
+      width: 40px;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
       border-radius: 50%;
       border: 3px solid var(--clr-black);
       font-size: 18px;

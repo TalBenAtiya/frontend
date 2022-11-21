@@ -4,6 +4,7 @@ import GameView from '../views/GameView.vue'
 import GameDetails from '../views/GameDetails.vue'
 import Signup from '../views/Signup.vue'
 import Cart from '../views/Cart.vue'
+import AboutView from '../views/AboutView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,8 +25,13 @@ const router = createRouter({
       component: GameView
     },
     {
-      path: '/singup',
-      name: 'singup',
+      path: '/about',
+      name: 'about',
+      component: AboutView
+    },
+    {
+      path: '/signup',
+      name: 'signup',
       component: Signup
     },
     {

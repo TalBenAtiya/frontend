@@ -1,0 +1,42 @@
+<template>
+  <svg width="202" height="163" viewBox="0 0 202 163" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_d_21_2)">
+<path d="M180.069 76.3119C184.051 78.6248 184.051 84.3752 180.069 86.6881L76.5138 146.845C72.5139 149.168 67.5 146.283 67.5 141.657L67.5 21.3433C67.5 16.7174 72.5139 13.8316 76.5139 16.1552L180.069 76.3119Z" fill="#ED0000"/>
+</g>
+<g filter="url(#filter1_d_21_2)">
+<path d="M116 71.3039C120 73.6133 120 79.3868 116 81.6962L40.25 125.43C36.25 127.74 31.25 124.853 31.25 120.234L31.25 32.7657C31.25 28.1469 36.25 25.2602 40.25 27.5696L116 71.3039Z" fill="#ED0000"/>
+</g>
+<defs>
+<filter id="filter0_d_21_2" x="59.5" y="2.33433" width="141.555" height="158.331" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="5"/>
+<feGaussianBlur stdDeviation="6.5"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_21_2"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_21_2" result="shape"/>
+</filter>
+<filter id="filter1_d_21_2" x="23.25" y="13.7568" width="113.75" height="125.486" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="5"/>
+<feGaussianBlur stdDeviation="6.5"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_21_2"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_21_2" result="shape"/>
+</filter>
+</defs>
+</svg>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style>
+
+</style>

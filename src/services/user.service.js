@@ -21,16 +21,14 @@ async function login(creds) {
     try {
         const user = await httpService.post(URL_AUTH + 'login', creds)
         return saveLocalUser(user)
-    } catch (err) {
-        console.error('Faild To Login')
-        // throw err
+    } catch {
+        console.error('Failed To Login') 
     }
 }
 async function logout() {
-    console.log('hi')
     try {
         await httpService.post(URL_AUTH + 'logout')
-        // sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
+        sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
         return null
     } catch {
         console.error('Logout Failed')

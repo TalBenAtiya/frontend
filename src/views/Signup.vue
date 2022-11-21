@@ -11,26 +11,32 @@ export default {
     };
   },
   methods: {
-    onSignup() {
+    async onSignup() {
+      if (!this.username || !this.password || !this.email) {
+        this.msg = "Fields Are Empty";
+        return;
+      }
       const creds = {
         username: this.username,
         password: this.password,
         email: this.email,
       };
-      this.$store.dispatch({ type: "signup", creds });
+      const user = await this.$store.dispatch({ type: "signup", creds });
+      if (!user) this.msg = "Signup Failed. Please Try Again";
+      else this.$router.push('/')
     },
-    onLogin() {
+    async onLogin() {
       if (!this.username || !this.password) {
-        this.msg = "Invalid Username/Password"
-        return
+        this.msg = "Invalid Username/Password";
+        return;
       }
       const creds = {
         username: this.username,
         password: this.password,
       };
-      this.$store.dispatch({ type: "login", creds });
-      this.username = "";
-      this.password = "";
+      const user = await this.$store.dispatch({ type: "login", creds });
+      if (!user) this.msg = "Invalid Username/Password";
+      else this.$router.push("/");
     },
     goSignup() {
       this.isSignup = !this.isSignup;
@@ -41,7 +47,8 @@ export default {
       return this.$store.getters.user;
     },
   },
-  updated() {
+  mounted() {
+    if (this.loggedInUser) this.$router.push("/");
   },
 };
 </script>
@@ -59,7 +66,7 @@ export default {
         <label for="username"> Password: </label>
         <input v-model="password" type="password" id="password" />
       </div>
-      <div class="msg" v-if="msg">{{msg}}</div>
+      <div class="msg" v-if="msg">{{ msg }}</div>
       <button @click.prevent="onLogin">Login</button>
       <span @click="goSignup" class="change-form">Not A Member? SIGNUP !</span>
     </form>
@@ -77,6 +84,7 @@ export default {
         <label for="email"> Email: </label>
         <input v-model="email" type="email" id="email" />
       </div>
+      <div class="msg" v-if="msg">{{ msg }}</div>
       <button @click.prevent="onSignup">Submit</button>
       <span @click="goSignup" class="change-form"
         >Already A Member? LOGIN !</span

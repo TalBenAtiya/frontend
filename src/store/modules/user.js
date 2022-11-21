@@ -17,6 +17,7 @@ export default {
         async signup({commit}, {creds}) {
             const user = await userService.signup(creds)
             commit({type: 'setUser', user})
+            return user
         },
         async logout({commit}) {
             const user = await userService.logout()
@@ -25,6 +26,7 @@ export default {
         async login({commit}, {creds}) {
             const user = await userService.login(creds)
             commit({type: 'setUser', user})
+            return user
         }
 
     },

@@ -1,10 +1,11 @@
 <script>
+import Loader from '../components/Loader.vue';
 import ArrowSvg from "../components/svgs/ArrowSvg.vue";
 import BackArrowSvg from "../components/svgs/BackArrowSvg.vue";
 import CartSvg from "../components/svgs/CartSvg.vue";
 
 export default {
-  components: { ArrowSvg, CartSvg, BackArrowSvg },
+  components: { ArrowSvg, CartSvg, BackArrowSvg, Loader },
   data() {
     return {
       imgUrl: null,
@@ -99,6 +100,7 @@ export default {
       </div>
     </div>
   </section>
+  <section v-else><loader /></section>
 </template>
 
 <style lang="scss">
