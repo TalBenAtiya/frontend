@@ -4,8 +4,9 @@ import AboutSvg from "./svgs/AboutSvg.vue";
 import HomeSvg from "./svgs/HomeSvg.vue";
 import LogoSvg from "./svgs/LogoSvg.vue";
 import RubikWhiteSvg from "./svgs/RubikWhiteSvg.vue";
+import UserMsg from './UserMsg.vue';
 export default {
-  components: { LogoSvg, RubikWhiteSvg, HomeSvg, AboutSvg, CartBtn },
+  components: { LogoSvg, RubikWhiteSvg, HomeSvg, AboutSvg, CartBtn, UserMsg },
   data() {
     return {
       isScrolled: false,
@@ -73,6 +74,7 @@ export default {
       </nav>
     </div>
     <cart-btn v-if="!isCartPage" class="my-cart" />
+    <user-msg />
   </header>
 </template>
 
@@ -181,8 +183,8 @@ export default {
     .user-box {
       background-color: var(--clr-gray);
       display: flex;
-      width: 40px;
-      height: 40px;
+      width: 45px;
+      height: 45px;
       align-items: center;
       justify-content: center;
       border-radius: 50%;

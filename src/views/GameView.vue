@@ -68,6 +68,7 @@ export default {
 .game-view {
   display: flex;
   gap: 20px;
+  flex: 1;
 }
 
 .filter {

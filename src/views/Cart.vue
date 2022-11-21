@@ -48,10 +48,10 @@ export default {
         <div v-if="cart?.length > 0">
           <h3 class="games-title">Summary :</h3>
           <section class="list">
-          <div class="game-total" v-for="game in cart" :key="game._id">
-            <span class="title">{{ game.title }}</span>
-            <span>${{ game.price }}</span>
-          </div>
+            <div class="game-total" v-for="game in cart" :key="game._id">
+              <span class="title">{{ game.title }}</span>
+              <span>${{ game.price }}</span>
+            </div>
           </section>
         </div>
         <div class="total-sum">
@@ -67,7 +67,8 @@ export default {
 
 <style lang="scss">
 .cart {
-  position: relative;
+  width: 100%;
+  flex: 1;
   h2 {
     font-size: 40px;
     margin-bottom: 40px;

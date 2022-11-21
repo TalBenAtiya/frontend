@@ -1,4 +1,5 @@
 import { cartService } from "../../services/cart.service"
+import { showSuccessMsg } from "../../services/event-bus.service"
 
 export default {
     state: {
@@ -10,6 +11,7 @@ export default {
         },
         addGame(state, { newGame }) {
             state.cart.unshift(newGame)
+            
         },
         removeGame(state, { id }) {
             state.cart = state.cart.filter(game => game._id !== id)
@@ -22,6 +24,7 @@ export default {
         },
         async addToCart({ commit }, { game }) {
             const newGame = await cartService.addToCart(game)
+            if (!newGame) return
             commit({ type: 'addGame', newGame })
         },
         async removeFromCart({ commit }, { id }) {

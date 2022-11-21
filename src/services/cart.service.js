@@ -1,4 +1,5 @@
 import { storageService } from "./async-storage.service";
+import { showErrorMsg, showSuccessMsg } from "./event-bus.service";
 
 export const cartService = {
     addToCart,
@@ -16,7 +17,13 @@ async function getCart() {
 }
 
 async function addToCart(game) {
+    let cart = await storageService.query(STORAGE_KEY)
+    if (cart.some(cartGame => cartGame.title === game.title)){
+        showErrorMsg('Game Already In Cart')
+        return
+    }
     let newGame = await storageService.post(STORAGE_KEY, game)
+    showSuccessMsg('Game Added To Cart')
     return newGame
 }
 
