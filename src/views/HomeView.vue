@@ -98,7 +98,7 @@ export default {
       <button @click="goToRoute" class="btn show-all">Show All</button>
     </div>
   </section>
-  <section v-else>
+  <section v-else class="main-layout">
     <loader />
   </section>
 </template>

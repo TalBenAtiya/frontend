@@ -9,7 +9,7 @@ export default {
 </script>
 
 <template>
-<section class="about">
+<section class="about main-layout">
 </section>
 </template>
 

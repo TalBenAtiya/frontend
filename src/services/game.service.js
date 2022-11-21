@@ -1,7 +1,4 @@
-import axios from "axios"
-import { storageService } from "./async-storage.service";
 import { httpService } from './http.service.js'
-import { getRandomIntInclusive, makeLorem } from "./util.service";
 
 export const gameService = {
     getGames,
