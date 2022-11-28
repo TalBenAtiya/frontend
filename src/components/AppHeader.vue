@@ -63,7 +63,7 @@ export default {
 <template>
   <header :class="`header-container ${isScrolled ? 'scrolled' : ''}`">
     <div class="main-header">
-      <logo-svg class="svg logo-svg" />
+      <logo-svg @click="this.$router.push('/')" class="svg logo-svg" />
       <nav :class="isMenuOpen ? 'open' : ''">
         <RouterLink @click="closeMenu" to="/">
           <home-svg class="svg home-svg" />
@@ -284,6 +284,7 @@ export default {
   .logo-svg {
     height: 60px;
     width: 225px;
+    cursor: pointer;
 
     @media (max-width: 500px) {
       width: 135px;

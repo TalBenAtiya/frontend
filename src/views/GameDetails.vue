@@ -140,12 +140,17 @@ export default {
 
     position: fixed;
     bottom: 30px;
-    left: 30px;
+    left: 10px;
     border-radius: 50%;
     background-color: transparent;
     transition: 0.4s;
     height: 50px;
     width: 50px;
+
+    @media (max-width: 1200px) {
+      top: 70px;
+      left: 10px;
+    }
 
     &:hover {
       animation: arrow-translate 0.8s linear infinite;
