@@ -157,6 +157,10 @@ export default {
         border-radius: 0.3em;
         transition: 0.3s;
 
+        @media (max-width: 500px) {
+          max-width: 120px;
+        }
+
         &:focus {
           box-shadow: 0px 0px 3px 0px var(--clr-main-red);
         }

@@ -87,8 +87,6 @@ export default {
   position: sticky;
   top: 110px;
 
-  
-
   @media (max-width: 560px) {
     position: fixed;
     top: 70px;
@@ -97,13 +95,14 @@ export default {
     background-color: var(--clr-black);
     height: 100%;
     padding-inline-end: 20px;
-    left: -170px;
+    left: 0;
+    translate: -95%;
     transition: 0.5s;
 
     &.open {
-    left: 0px;
+    translate: 0;
     padding-inline: 15px;
-    width: 50%;
+    width: 60%;
 
     .btn-open-filter {
       right: -13px;

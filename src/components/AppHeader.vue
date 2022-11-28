@@ -48,8 +48,8 @@ export default {
       this.isMenuOpen = toggleStatus;
     },
     closeMenu() {
-      this.isMenuOpen = !this.isMenuOpen
-    }
+      this.isMenuOpen = !this.isMenuOpen;
+    },
   },
   mounted() {
     window.addEventListener("scroll", this.setIsScrolled);
@@ -67,22 +67,26 @@ export default {
       <nav :class="isMenuOpen ? 'open' : ''">
         <RouterLink @click="closeMenu" to="/">
           <home-svg class="svg home-svg" />
-          <h3 v-if="isMenuOpen">Home Page</h3>
+          <h3 class="nav-title">Home Page</h3>
         </RouterLink>
         <RouterLink @click="closeMenu" to="/games">
           <rubik-white-svg class="svg rubik-svg" />
-          <h3 v-if="isMenuOpen">Games Collection</h3>
+          <h3 class="nav-title">Games Collection</h3>
         </RouterLink>
         <RouterLink @click="closeMenu" to="/about">
           <about-svg class="svg about-svg" />
-          <h3 v-if="isMenuOpen">About Us</h3>
+          <h3 class="nav-title">About Us</h3>
         </RouterLink>
       </nav>
-      <menu-svg :isMenuOpen="isMenuOpen" @toggle-menu="toggleMenu" class="btn-menu" />
+      <menu-svg
+        :isMenuOpen="isMenuOpen"
+        @toggle-menu="toggleMenu"
+        class="btn-menu"
+      />
       <router-link v-if="!loggedInUser" to="/signup" class="user">
         <span>LOGIN</span>
       </router-link>
-      <div  v-if="loggedInUser" @click="toggleUserModal" class="user logged">
+      <div v-if="loggedInUser" @click="toggleUserModal" class="user logged">
         <div class="logged-in">
           <span class="user-box">{{
             loggedInUser.username.slice(0, 2).toUpperCase()
@@ -161,6 +165,9 @@ export default {
       align-items: center;
       transition: 0.5s;
 
+      .nav-title {
+        display: none;
+      }
       a {
         display: flex;
         gap: 20px;
@@ -178,7 +185,7 @@ export default {
       }
       @media (max-width: 500px) {
         position: fixed;
-        top: -100%;
+        top: -110%;
         left: 0;
         width: 100%;
         height: 100vh;
@@ -187,6 +194,10 @@ export default {
         padding-block-start: 60px;
         flex-direction: column;
         z-index: 0;
+
+        .nav-title {
+          display: flex;
+        }
 
         a {
           justify-content: center;
