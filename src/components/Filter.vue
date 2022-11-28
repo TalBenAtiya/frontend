@@ -98,6 +98,10 @@ export default {
   flex-direction: column;
   border-radius: 0.4em;
 
+  @media (max-width: 560px) {
+    border: none;
+  }
+
   label {
     display: flex;
     padding-inline: 6px;

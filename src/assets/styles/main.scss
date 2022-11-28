@@ -51,6 +51,10 @@ button {
     padding-inline: 50px;
     margin-inline: auto;
     flex: 1;
+
+    @media (max-width: 500px ) {
+        padding-inline: 10px;
+    }
 }
 
 h1,h2,h3,h4,h5,h6,p {

@@ -100,7 +100,7 @@ export default {
       </div>
     </div>
   </section>
-  <section v-else><loader /></section>
+  <section v-else class="main-layout"><loader /></section>
 </template>
 
 <style lang="scss">
@@ -108,6 +108,17 @@ export default {
   display: flex;
   gap: 30px;
   justify-content: space-between;
+
+  @media (max-width: 1200px) {
+    flex-direction: column;
+  }
+
+  @media (max-width: 600px) {
+    &.main-layout {
+      padding-inline: 10px;
+    }
+  }
+
 
   .back {
     @keyframes arrow-translate {
@@ -127,12 +138,14 @@ export default {
       }
     }
 
-    position: absolute;
-    top: 130px;
-    left: 60px;
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
     border-radius: 50%;
     background-color: transparent;
     transition: 0.4s;
+    height: 50px;
+    width: 50px;
 
     &:hover {
       animation: arrow-translate 0.8s linear infinite;
@@ -180,6 +193,11 @@ export default {
         height: 600px;
         object-fit: cover;
         object-position: 100% 0;
+
+        
+  @media (max-width: 1200px) {
+    object-position: 50%;
+  }
       }
 
       .btn {
@@ -224,6 +242,7 @@ export default {
       display: flex;
       gap: 5px;
       margin-inline: auto;
+      flex-wrap: wrap;
 
       .card {
         border-radius: 0.3em;
@@ -231,6 +250,8 @@ export default {
         background-color: var(--clr-white);
         height: 60px;
         cursor: pointer;
+        width: fit-content;
+        margin-bottom: 10px;
 
         img {
           height: 100%;

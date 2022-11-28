@@ -15,7 +15,7 @@ export default {
   },
   created() {
     this.$store.dispatch({ type: "loadGames" });
-    this.startInterval();
+    // this.startInterval();
   },
   updated() {
     if (this.actionGames.length <= 0) {

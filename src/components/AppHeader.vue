@@ -3,14 +3,24 @@ import CartBtn from "./CartBtn.vue";
 import AboutSvg from "./svgs/AboutSvg.vue";
 import HomeSvg from "./svgs/HomeSvg.vue";
 import LogoSvg from "./svgs/LogoSvg.vue";
+import MenuSvg from "./svgs/MenuSvg.vue";
 import RubikWhiteSvg from "./svgs/RubikWhiteSvg.vue";
-import UserMsg from './UserMsg.vue';
+import UserMsg from "./UserMsg.vue";
 export default {
-  components: { LogoSvg, RubikWhiteSvg, HomeSvg, AboutSvg, CartBtn, UserMsg },
+  components: {
+    LogoSvg,
+    RubikWhiteSvg,
+    HomeSvg,
+    AboutSvg,
+    CartBtn,
+    UserMsg,
+    MenuSvg,
+  },
   data() {
     return {
       isScrolled: false,
       isUserModalOpen: false,
+      isMenuOpen: false,
     };
   },
   computed: {
@@ -34,6 +44,12 @@ export default {
     onLogout() {
       this.$store.dispatch({ type: "logout" });
     },
+    toggleMenu(toggleStatus) {
+      this.isMenuOpen = toggleStatus;
+    },
+    closeMenu() {
+      this.isMenuOpen = !this.isMenuOpen
+    }
   },
   mounted() {
     window.addEventListener("scroll", this.setIsScrolled);
@@ -48,30 +64,34 @@ export default {
   <header :class="`header-container ${isScrolled ? 'scrolled' : ''}`">
     <div class="main-header">
       <logo-svg class="svg logo-svg" />
-      <nav>
-        <RouterLink to="/">
+      <nav :class="isMenuOpen ? 'open' : ''">
+        <RouterLink @click="closeMenu" to="/">
           <home-svg class="svg home-svg" />
+          <h3 v-if="isMenuOpen">Home Page</h3>
         </RouterLink>
-        <RouterLink to="/games">
+        <RouterLink @click="closeMenu" to="/games">
           <rubik-white-svg class="svg rubik-svg" />
+          <h3 v-if="isMenuOpen">Games Collection</h3>
         </RouterLink>
-        <RouterLink to="/about">
+        <RouterLink @click="closeMenu" to="/about">
           <about-svg class="svg about-svg" />
+          <h3 v-if="isMenuOpen">About Us</h3>
         </RouterLink>
-        <router-link v-if="!loggedInUser" to="/signup" class="user">
-          <span>LOGIN</span>
-        </router-link>
-        <div v-if="loggedInUser" @click="toggleUserModal()" class="user logged">
-          <div class="logged-in">
-            <span class="user-box">{{
-              loggedInUser.username.slice(0, 2).toUpperCase()
-            }}</span>
-            <div @click="onLogout" class="user-modal" v-if="isUserModalOpen">
-              <span>Logout</span>
-            </div>
+      </nav>
+      <menu-svg :isMenuOpen="isMenuOpen" @toggle-menu="toggleMenu" class="btn-menu" />
+      <router-link v-if="!loggedInUser" to="/signup" class="user">
+        <span>LOGIN</span>
+      </router-link>
+      <div  v-if="loggedInUser" @click="toggleUserModal" class="user logged">
+        <div class="logged-in">
+          <span class="user-box">{{
+            loggedInUser.username.slice(0, 2).toUpperCase()
+          }}</span>
+          <div @click="onLogout" class="user-modal" v-if="isUserModalOpen">
+            <span>Logout</span>
           </div>
         </div>
-      </nav>
+      </div>
     </div>
     <cart-btn v-if="!isCartPage" class="my-cart" />
     <user-msg />
@@ -105,9 +125,11 @@ export default {
     background: var(--clr-header);
     animation: breathing 3s linear infinite;
 
-    .main-header {
-      padding-inline-end: 95px;
-      padding-inline-start: 20px;
+    @media (min-width: 501px) {
+      .main-header {
+        padding-inline-end: 95px;
+        padding-inline-start: 20px;
+      }
     }
   }
 
@@ -121,17 +143,60 @@ export default {
     transition: 0.5s;
     position: relative;
 
+    @media (max-width: 500px) {
+      padding-inline-end: 80px;
+    }
+
+    .btn-menu {
+      display: none;
+
+      @media (max-width: 500px) {
+        display: flex;
+      }
+    }
+
     nav {
       display: flex;
       gap: 15px;
       align-items: center;
+      transition: 0.5s;
+
+      a {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
 
       a.router-link-active {
+        color: var(--clr-main-red);
         svg {
           scale: 1.3;
           path {
             fill: var(--clr-main-red);
           }
+        }
+      }
+      @media (max-width: 500px) {
+        position: fixed;
+        top: -100%;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: var(--clr-black);
+        align-items: center;
+        padding-block-start: 60px;
+        flex-direction: column;
+        z-index: 0;
+
+        a {
+          justify-content: center;
+          width: 100%;
+          height: 80px;
+          box-shadow: 1px -2px 0px 0px var(--clr-gray) inset;
+        }
+
+        &.open {
+          top: 70px;
         }
       }
     }
@@ -155,9 +220,9 @@ export default {
     padding-inline: 3px;
 
     &.logged {
-      background-color: transparent;
+      background-color: var(--clr-gray);
       &:hover {
-        background-color: transparent;
+        background-color: var(--clr-gray);
       }
     }
 
@@ -208,6 +273,10 @@ export default {
   .logo-svg {
     height: 60px;
     width: 225px;
+
+    @media (max-width: 500px) {
+      width: 135px;
+    }
   }
 
   .rubik-svg,

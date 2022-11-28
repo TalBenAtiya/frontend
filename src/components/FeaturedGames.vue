@@ -15,11 +15,11 @@ export default {
   },
   methods: {
     setIdx(idx) {
-      this.$emit("set-idx", idx)
+      this.$emit("set-idx", idx);
     },
     goToDetails(id) {
-      this.$router.push(`/games/${id}`)
-    }
+      this.$router.push(`/games/${id}`);
+    },
   },
 };
 </script>
@@ -40,7 +40,12 @@ export default {
       </div>
     </div>
     <div class="featured-list">
-      <div v-for="(game, idx) in games.slice(0, 5)" :key="idx" class="card" @click="setIdx(idx)">
+      <div
+        v-for="(game, idx) in games.slice(0, 5)"
+        :key="idx"
+        class="card"
+        @click="setIdx(idx)"
+      >
         <img :src="`${game.imgUrl}`" />
         <h4>{{ game.title }}</h4>
       </div>
@@ -61,15 +66,21 @@ export default {
   gap: 5px;
   grid-row: 1/-1;
 
+  @media (max-width: 760px) {
+    width: 100%;
+  }
   .card {
     display: flex;
     padding: 10px;
     align-items: center;
-    max-width: 300px;
     cursor: pointer;
     border-radius: 0.4em;
     transition: 0.3s;
-    
+    max-width: 250px;
+
+    @media (max-width: 760px) {
+      max-width: none;
+    }
 
     &:hover {
       background-color: rgb(54, 54, 54);
@@ -93,13 +104,17 @@ export default {
   border-radius: 0.5em;
   min-width: 350px;
 
+  @media (max-width: 765px) {
+    height: 500px;
+    margin-bottom: 20px;
+  }
+
   .game-info {
     padding: 15px;
     display: flex;
     flex-direction: column;
     color: white;
     gap: 20px;
-
 
     h1 {
       font-size: 38px;
@@ -129,12 +144,8 @@ export default {
     top: 0;
     z-index: -2;
     object-fit: cover;
-    object-position: 100% 0;
+    object-position: center;
     filter: brightness(80%);
-
-    @media (max-width: 1200px) {
-      object-position: center;
-    }
   }
 
   .darker-img {
